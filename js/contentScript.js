@@ -1,4 +1,4 @@
-var CDN = 'https://cdn.leonambernini.com.br/1up-tv/';
+var CDN = 'https://1up-tv.vercel.app/';
 var CDN_IMAGES = CDN + 'images/';
 var IMG_BRAND = CDN_IMAGES + '1up-brand.png';
 
@@ -47,7 +47,7 @@ function prepareTV(){
                 </div>
             </div>
             <div class="lb-custom-tv-tela-3">
-                <iframe src="https://www.dropbox.com/s/di1232fqjkgn52k/tvexterna.html" id="lb-custom-tvexterna"></iframe>
+                <iframe src="${CDN}tvexterna/tvexterna.html?a=${Math.random()}" id="lb-custom-tvexterna"></iframe>
             </div>
             <div class="lb-custom-tv-tela-4">
                 <h2>CHECK-IN</h2>
@@ -170,7 +170,7 @@ function atualizaHorarios(){
         }
         $('.lb-custom-tv').removeClass('tvexterna-ativa');
     }else{
-        $('.lb-custom-tv').addClass('tvexterna-ativa2');
+        $('.lb-custom-tv').addClass('tvexterna-ativa');
         // console.log('SEM AULA, AGUARDANDO PROXIMA AULA...');
     }
 }
@@ -204,14 +204,33 @@ function eventos(){
         var $itemActive = $('.lb-info-wod-item.active');
         var $elementToShow = null;
         var index = parseInt($itemActive.data('index'));
+        var nextIndex = index;
+        var type = 'next';
+        var qtd = $('.lb-info-wod-item').length - 1;
 
         var key = e.keyCode;
         if( key == 37 || key == 33 ){
-            $elementToShow = ( $('.lb-info-wod-item').eq(++index).length ) ? $('.lb-info-wod-item').eq(++index) : $('.lb-info-wod-item').first();
+            if( index == 0 ){
+                nextIndex = qtd;
+            }else{
+                nextIndex = index - 1;
+            }
+            type = 'prev';
         }else if( key == 39 || key == 34 ){
-            $elementToShow = ( $('.lb-info-wod-item').eq(--index).length ) ? $('.lb-info-wod-item').eq(--index) : $('.lb-info-wod-item').last();
+            if( index == qtd ){
+                nextIndex = 0;
+            }else{
+                nextIndex = index + 1;
+            }
+            type = 'next';
         }
         
+        if( $('.lb-info-wod-item[data-index="'+nextIndex+'"]').length ){
+            $elementToShow = $('.lb-info-wod-item[data-index="'+nextIndex+'"]');
+        }else{
+            $elementToShow = $('.lb-info-wod-item').first();
+        }
+
         if( $elementToShow ){
             $items.removeClass('active').hide();
             $elementToShow.addClass('active').fadeIn();
