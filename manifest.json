@@ -1,0 +1,29 @@
+{
+    "name": "1UP TV",
+    "description": "Manipulação da tela WOD TV do aplicativo Tecnofit",
+    "version": "1.0",
+    "manifest_version": 3,
+    "permissions": ["storage"],
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "32": "/images/1up-32x32.png",
+            "64": "/images/1up-64x64.png",
+            "128": "/images/1up-128x128.png",
+            "256": "/images/1up-256x256.png"
+        }
+    },
+    "content_scripts": [
+        {
+            "matches": ["https://app.tecnofit.com.br/*"],
+            "js": ["js/jquery-3.6.0.min.js", "js/contentScript.js"],
+            "css": ["css/style.css"]
+        }
+    ],
+    "icons": {
+        "32": "/images/1up-32x32.png",
+        "64": "/images/1up-64x64.png",
+        "128": "/images/1up-128x128.png",
+        "256": "/images/1up-256x256.png"
+    }
+}
