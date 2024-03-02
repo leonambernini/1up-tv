@@ -3,7 +3,9 @@
     "description": "Manipulação da tela WOD TV do aplicativo Tecnofit",
     "version": "1.0",
     "manifest_version": 3,
-    "permissions": ["storage"],
+    "permissions": [
+        "storage"
+    ],
     "action": {
         "default_popup": "popup.html",
         "default_icon": {
@@ -15,9 +17,16 @@
     },
     "content_scripts": [
         {
-            "matches": ["https://app.tecnofit.com.br/*"],
-            "js": ["js/jquery-3.6.0.min.js", "js/contentScript.js"],
-            "css": ["css/style.css"]
+            "matches": [
+                "https://evo-totem.w12app.com.br/1upcomplexoesportivo/1/site/tv/wod"
+            ],
+            "js": [
+                "js/jquery-3.6.0.min.js",
+                "js/contentScript.js"
+            ],
+            "css": [
+                "css/style.css"
+            ]
         }
     ],
     "icons": {
